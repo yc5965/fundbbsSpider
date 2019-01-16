@@ -40,7 +40,7 @@ class WeeklySpiderItem(scrapy.Item):
     # 周刊期号图片链接
     weekly_issue_image = scrapy.Field()
     # 周刊目录链接
-    weekly_url =scrapy.Field()
+    weekly_url = scrapy.Field()
 
     # 编号
     id = scrapy.Field()
@@ -65,26 +65,6 @@ class WeeklySpiderItem(scrapy.Item):
     # 文章时间
     article_deal_time = scrapy.Field()
 
-class CompanySpiderItem(scrapy.Item):
-    # 网站
-    company = scrapy.Field()
-    # 标题
-    title = scrapy.Field()
-    # 时间
-    time = scrapy.Field()
-    # 内容
-    content = scrapy.Field()
-    # 内容文本
-    content_text = scrapy.Field()
-    # 链接
-    announcement_url = scrapy.Field()
-    # file_url
-    file_url = scrapy.Field()
-    # 公告类型
-    announcement_type = scrapy.Field()
-    # 创建时间
-    create_time = scrapy.Field()
-
 
 class FundSpiderItem(scrapy.Item):
     # 网站
@@ -93,15 +73,40 @@ class FundSpiderItem(scrapy.Item):
     fund_name = scrapy.Field()
     # 基金代码
     fund_code = scrapy.Field()
+    # 链接
+    fund_url = scrapy.Field()
+    # 更新日期
+    update_date = scrapy.Field()
+    # 单位净值
+    unit_net_value = scrapy.Field()
+    # 累计净值
+    cumulative_net_value = scrapy.Field()
+    # 最近日涨跌幅
+    today_variety = scrapy.Field()
+    # 最近三个月
+    last_three_months = scrapy.Field()
+    # 最近一年
+    last_year = scrapy.Field()
+    # 今年以来
+    since_this_year = scrapy.Field()
+    # 成立以来
+    since_established = scrapy.Field()
+    # 基金经理头像
+    fund_manager_image = scrapy.Field()
+    # 经理介绍
+    manager_introduction = scrapy.Field()
+
+
+
+    #公告编号
+    announcement_id = scrapy.Field()
     # 标题
     announcement_title = scrapy.Field()
     # 内容
     content = scrapy.Field()
     # 内容文本
     content_text = scrapy.Field()
-    # 链接
-    fund_url = scrapy.Field()
-    # file_url
+    # 内容页面链接
     file_url = scrapy.Field()
     # 公告类型
     announcement_type = scrapy.Field()

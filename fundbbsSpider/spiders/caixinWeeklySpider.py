@@ -16,7 +16,7 @@ class CaixinWeeklySpider(scrapy.Spider):
     start_urls = ['http://weekly.caixin.com/']
     custom_settings = {
         'ITEM_PIPELINES': {
-            "newsSpider.pipelines.WeeklySpiderPipeline": 300
+            "fundbbsSpider.pipelines.WeeklySpiderPipeline": 300
         }
     }
 
@@ -35,10 +35,9 @@ class CaixinWeeklySpider(scrapy.Spider):
             urls = response.xpath(
                 "//div[@id='col_wq_1']/div[@class='xsjCon']/ul/li/a/@href|//div[@class='mi']/a/@href").extract()
         urlFilter = WeeklyFilter()
-        item = WeeklySpiderItem()
         for each in urls:
-            item["weekly_url"] = each
-            if urlFilter.filter_request(item):
+            count = urlFilter.filter_request(each)
+            if count[0][0] == 0:
                 self.weekly_links.append(each)
         if self.weekly_links:
             md = hashlib.md5()

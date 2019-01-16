@@ -17,7 +17,7 @@ class CaixinIndexSpider(scrapy.Spider):
     start_urls = ['http://www.caixin.com/']
     custom_settings = {
         'ITEM_PIPELINES': {
-            "newsSpider.pipelines.IndexSpiderPipeline": 300
+            "fundbbsSpider.pipelines.IndexSpiderPipeline": 300
         }
     }
 
@@ -35,11 +35,10 @@ class CaixinIndexSpider(scrapy.Spider):
         news_link = response.xpath("//div[@class='news_list']/dl/dd/p/a/@href").extract()
         links = toutiao_link + img_link + news_link
         urlFilter = IndexFilter()
-        item = IndexSpiderItem()
         for each in links:
             if re.match("http://[a-z.]*/[0-9]*-[0-9]*-[0-9]*/[0-9]*.html", each):
-                item["page_url"] = each
-                if urlFilter.filter_request(item):
+                count = urlFilter.filter_request(each)
+                if count[0][0] == 0:
                     self.index_links.append(each)
         urls = urlFilter.fill_request()
         if urls:
